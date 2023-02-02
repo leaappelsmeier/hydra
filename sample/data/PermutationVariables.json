@@ -1,0 +1,34 @@
+{
+    "USE_NORMALMAP": {
+        "Type": "bool",
+        "Default": true
+    },
+    "USE_FOG": {
+        "Type": "bool",
+        "Default": false
+    },
+    "MSAA_SAMPLES": {
+        "Type": "int",
+        "Values": [
+            0,
+            2,
+            4,
+            8
+        ],
+        "Default": 0
+    },
+    "LIGHTING_MODE": {
+        "Type": "enum",
+        "Values": [
+            {
+                "NONE": 0
+            },
+            {
+                "PHONG": 1
+            },
+            {
+                "PBR": 2
+            }
+        ]
+    }
+}

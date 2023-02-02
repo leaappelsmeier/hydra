@@ -1,0 +1,82 @@
+// Before any section, one can use 'import "file"' or 'import <file>' to reference another Hydra shader file,
+// similar to how #include works.
+// In this case the sources for each shader stage or concatenated.
+
+import "Shared.Hydra"
+
+[PERMUTATIONS]
+
+// In this section the shader author has to list all permutation variables that the shader uses.
+// If a variable should be used to generate permutations, write 'VAR_NAME' or 'VAR_NAME = *'
+// If a variable should be set to a fixed value and not participate in permutation generation, write 'VAR_NAME = value'
+// Which variables are available and which values a variable can take, are set up through the PermutationManager.
+
+LIGHTING_MODE
+USE_FOG
+USE_NORMALMAP
+USE_MOTIONBLUR = false
+RENDER_MODE
+REFLECTIONS
+
+[ALL_SHADERS]
+
+// Everything in this section will be prepended to all other shaders
+// This is typically used to add common #includes and struct definitions.
+
+[VERTEX_SHADER]
+
+// Example.hydra: Vertex shader code.
+
+[HULL_SHADER]
+
+// Example.hydra: Hull shader code.
+
+[DOMAIN_SHADER]
+
+// Example.hydra: Domain shader code.
+
+[GEOMETRY_SHADER]
+
+// Example.hydra: Geometry shader code.
+
+[PIXEL_SHADER]
+
+// Example.hydra: Pixel shader code.
+
+[COMPUTE_SHADER]
+
+// Example.hydra: Compute shader code.
+
+[USERSECTION_DESCRIPTION]
+
+    // Example.hydra: User section (description).
+#[ if (RENDER_MODE == RENDER_MODE::REGULAR) ]
+    #[ if (LIGHTING_MODE == LIGHTING_MODE::NONE) ]
+        Objects have no lighting.
+    #[ elif (LIGHTING_MODE == LIGHTING_MODE::PHONG) ]
+        Objects have low-quality phong lighting.
+    #[ else ]
+        #[ if (!USE_NORMALMAP) ]
+        Objects are lit realistically but appear flat.
+        #[ else ]
+        Objects are lit with the most modern techniques imaginable.
+        #[ endif ]
+    #[ endif ]
+    #[ if (REFLECTIONS == REFLECTIONS::NONE)]
+        Metallic objects are not looking so great.
+    #[ endif ]
+    #[ if (REFLECTIONS == REFLECTIONS::SCREENSPACE)]
+        Metallic objects seem to reflect their surroundings.
+    #[ endif ]
+    #[ if (REFLECTIONS == REFLECTIONS::RAYTRACED)]
+        Metallic objects reflect their surroundings perfectly.
+    #[ endif ]
+    #[ if (USE_MOTIONBLUR) ]
+        Everything looks blurry.
+    #[ else ]
+        Everything looks sharp.
+    #[ endif ]
+    #[ if (USE_FOG) ]
+        At a distance the world fades into thick fog.
+    #[ endif ]
+#[ endif ]

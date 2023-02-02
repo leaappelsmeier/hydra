@@ -1,0 +1,20 @@
+[PERMUTATIONS]
+
+RENDER_MODE
+
+[VERTEX_SHADER]
+
+// Shared.hydra: Vertex shader code.
+
+[PIXEL_SHADER]
+
+// Shared.hydra: PIXEL SHADERS
+
+[USERSECTION_DESCRIPTION]
+
+    // Shared.hydra: User section (description).
+#[ if (RENDER_MODE == RENDER_MODE::DEPTHONLY) ]
+        You don't see anything, only the depth values are rendered.
+#[ elif (RENDER_MODE == RENDER_MODE::WIREFRAME) ]
+        The world is rendered in stylish wireframe mode.
+#[ endif ]
